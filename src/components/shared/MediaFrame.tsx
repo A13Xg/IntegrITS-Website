@@ -14,7 +14,7 @@ export function MediaFrame({ src, alt, caption, eyebrow, className }: MediaFrame
   return (
     <figure className={`media-frame ${className ?? ''} ${loaded ? 'is-loaded' : ''}`.trim()}>
       {!loaded ? <span className="media-frame__skeleton" aria-hidden="true" /> : null}
-      <img src={src} alt={alt} loading="lazy" onLoad={() => setLoaded(true)} />
+      <img src={src} alt={alt} loading="lazy" onLoad={() => setLoaded(true)} onError={() => setLoaded(true)} />
       {eyebrow || caption ? (
         <figcaption className="media-frame__caption">
           {eyebrow ? <span className="media-frame__eyebrow">{eyebrow}</span> : null}
