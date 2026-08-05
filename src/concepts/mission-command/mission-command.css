@@ -1,0 +1,353 @@
+.theme-mission-command {
+  --accent: #ff2a3b;
+  --page-bg: #0a0a0c;
+  --surface: rgba(22, 22, 26, 0.92);
+  --surface-strong: rgba(10, 10, 12, 0.97);
+  --text-primary: #ffffff;
+  --text-muted: #8f8f9d;
+  --border: rgba(255, 255, 255, 0.12);
+  --radius-card: 0.2rem;
+  --radius-button: 0.2rem;
+  --font-display: 'Space Grotesk', 'Inter', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+  background:
+    linear-gradient(180deg, rgba(255, 42, 59, 0.09), transparent 20%),
+    linear-gradient(180deg, #06070a 0%, #0b0d10 100%);
+}
+
+.mission-command__noise {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.08;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+.mission-command__content {
+  gap: 1.4rem;
+}
+
+.mission-hero,
+.mission-location-layout,
+.mission-contact-card__grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+}
+
+.mission-hero__copy,
+.mission-hero__board {
+  padding: clamp(1.2rem, 2vw, 1.6rem);
+}
+
+.mission-hero__copy {
+  grid-column: span 5;
+  display: grid;
+  gap: 1rem;
+  align-content: start;
+}
+
+.mission-hero__copy h1,
+.mission-section-heading h2,
+.mission-contact-card h2 {
+  font-family: var(--font-display);
+  letter-spacing: -0.05em;
+}
+
+.mission-hero__copy h1 {
+  font-size: clamp(2.75rem, 7vw, 5.5rem);
+  line-height: 0.92;
+}
+
+.mission-hero__copy p,
+.mission-section-heading p,
+.mission-stat-card p,
+.mission-capability-card p,
+.mission-lifecycle-step p,
+.mission-leader-card p,
+.mission-location-card p,
+.mission-contract-card p,
+.mission-contact-card p,
+.mission-values-card p {
+  color: var(--text-muted);
+}
+
+.mission-hero__intro {
+  max-width: 48ch;
+}
+
+.mission-hero__actions,
+.mission-contact-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.mission-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 0.2rem;
+  background: rgba(255, 255, 255, 0.03);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.85rem;
+  font-weight: 700;
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.mission-button:hover,
+.mission-button:focus-visible {
+  transform: translate(-2px, -2px);
+  border-color: var(--accent);
+  box-shadow: 0 0 14px rgba(255, 42, 59, 0.25);
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.mission-button--primary {
+  background: var(--accent);
+  color: #0a0a0c;
+  border-color: var(--accent);
+}
+
+.mission-hero__board {
+  grid-column: span 7;
+  display: grid;
+  gap: 1rem;
+}
+
+.mission-hero__board-topline,
+.mission-location-card__head,
+.mission-contract-card__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+
+.mission-hero__media {
+  min-height: 320px;
+}
+
+.mission-hero__status-grid,
+.mission-stats-grid,
+.mission-capability-grid,
+.mission-lifecycle-grid,
+.mission-contract-grid,
+.mission-career-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.mission-hero__status-grid,
+.mission-stats-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.mission-hero__status-item,
+.mission-stat-card,
+.mission-lifecycle-step {
+  padding: 1rem;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.mission-hero__status-item span,
+.mission-stat-card__label,
+.mission-lifecycle-step__index,
+.mission-identifiers-grid span {
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+}
+
+.mission-hero__status-item strong,
+.mission-stat-card strong,
+.mission-identifiers-grid strong {
+  display: block;
+  margin: 0.35rem 0;
+  font-size: 1.4rem;
+  color: var(--text-primary);
+}
+
+.mission-section-heading {
+  display: grid;
+  gap: 0.6rem;
+  margin-bottom: 0.9rem;
+}
+
+.mission-section-heading h2,
+.mission-contact-card h2 {
+  font-size: clamp(1.8rem, 4vw, 3rem);
+}
+
+.mission-capability-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.mission-capability-card,
+.mission-leader-card,
+.mission-location-card,
+.mission-contract-card,
+.mission-identifiers-card,
+.mission-career-card,
+.mission-benefits-card,
+.mission-families-card,
+.mission-values-card,
+.mission-contact-card {
+  overflow: hidden;
+}
+
+.mission-capability-card__content,
+.mission-leader-card__body,
+.mission-location-card,
+.mission-contract-card,
+.mission-identifiers-card,
+.mission-career-card,
+.mission-benefits-card,
+.mission-families-card,
+.mission-values-card,
+.mission-contact-card {
+  display: grid;
+  gap: 0.9rem;
+  padding: 1rem;
+}
+
+.mission-capability-card ul,
+.mission-leader-card ul,
+.mission-location-card ul,
+.mission-contract-card ul,
+.mission-values-card ul,
+.mission-contact-card ul {
+  display: grid;
+  gap: 0.5rem;
+  padding-left: 1rem;
+  list-style: square;
+}
+
+.mission-capability-card li,
+.mission-leader-card li,
+.mission-location-card li,
+.mission-contract-card li,
+.mission-values-card li,
+.mission-contact-card li {
+  color: #dfe2ea;
+  list-style: inherit;
+}
+
+.mission-lifecycle-grid {
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  list-style: none;
+}
+
+.mission-lifecycle-step {
+  display: grid;
+  gap: 0.6rem;
+  min-height: 100%;
+}
+
+.mission-leadership-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.mission-location-layout > .media-frame {
+  grid-column: span 5;
+  min-height: 100%;
+}
+
+.mission-location-grid {
+  grid-column: span 7;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.mission-location-card__head {
+  justify-content: flex-start;
+}
+
+.mission-contract-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.mission-identifiers-grid,
+.mission-benefits-list,
+.mission-tag-grid {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.mission-tag-grid {
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+}
+
+.mission-tag-grid span {
+  padding: 0.75rem 0.85rem;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.03);
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+}
+
+.mission-career-grid {
+  grid-template-columns: 1.3fr 1fr;
+}
+
+.mission-contact-card__grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+@media (max-width: 1100px) {
+  .mission-hero__copy,
+  .mission-hero__board,
+  .mission-location-layout > .media-frame,
+  .mission-location-grid {
+    grid-column: 1 / -1;
+  }
+
+  .mission-hero__status-grid,
+  .mission-stats-grid,
+  .mission-capability-grid,
+  .mission-lifecycle-grid,
+  .mission-contract-grid,
+  .mission-career-grid,
+  .mission-location-grid,
+  .mission-contact-card__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .mission-hero,
+  .mission-location-layout,
+  .mission-contact-card__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .mission-hero__status-grid,
+  .mission-stats-grid,
+  .mission-capability-grid,
+  .mission-lifecycle-grid,
+  .mission-leadership-grid,
+  .mission-contract-grid,
+  .mission-career-grid,
+  .mission-location-grid,
+  .mission-contact-card__grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,358 @@
+.theme-human-integrity {
+  --accent: #8a5a3c;
+  --page-bg: #f4efe7;
+  --surface: rgba(255, 252, 246, 0.92);
+  --surface-strong: rgba(245, 239, 231, 0.96);
+  --text-primary: #132235;
+  --text-muted: #556173;
+  --border: rgba(19, 34, 53, 0.12);
+  --shadow: 0 24px 60px rgba(19, 34, 53, 0.08);
+  --radius-card: 1.1rem;
+  --radius-button: 999px;
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  color-scheme: light;
+  background:
+    radial-gradient(circle at top left, rgba(138, 90, 60, 0.12), transparent 34%),
+    linear-gradient(180deg, #f7f3eb 0%, #efe8de 100%);
+}
+
+.human-integrity__content {
+  gap: 2rem;
+}
+
+.human-hero,
+.human-location-layout,
+.human-contact-card__details {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  align-items: start;
+}
+
+.human-hero__copy {
+  grid-column: span 5;
+  display: grid;
+  gap: 1.1rem;
+  padding: clamp(1rem, 2vw, 1.25rem) 0;
+}
+
+.human-hero__copy h1,
+.human-section-heading h2,
+.human-contact-card h2 {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 7vw, 5.5rem);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+}
+
+.human-hero__copy p,
+.human-section-heading p,
+.human-contact-card p,
+.human-capability-card p,
+.human-leader-card p,
+.human-location-card p,
+.human-contract-card p,
+.human-stat-card p {
+  color: var(--text-muted);
+}
+
+.human-hero__promise {
+  font-style: italic;
+  color: #213244;
+}
+
+.human-hero__actions,
+.human-contact-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.human-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.05rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.6);
+  color: var(--text-primary);
+  transition:
+    background 0.25s ease,
+    transform 0.25s ease;
+}
+
+.human-button:hover,
+.human-button:focus-visible {
+  background: rgba(138, 90, 60, 0.12);
+  transform: translateY(-1px);
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.human-button--primary {
+  background: #132235;
+  color: #fff9f2;
+  border-color: #132235;
+}
+
+.human-hero__media-stack {
+  grid-column: span 7;
+  display: grid;
+  gap: 1rem;
+}
+
+.human-hero__media {
+  min-height: 360px;
+}
+
+.human-hero__quote {
+  display: grid;
+  gap: 0.9rem;
+  padding: 1.3rem;
+  color: #213244;
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+.human-section-heading {
+  display: grid;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.human-section-heading h2 {
+  font-size: clamp(2rem, 4vw, 3.2rem);
+}
+
+.human-stats-grid,
+.human-capability-grid,
+.human-lifecycle-grid,
+.human-contract-grid,
+.human-career-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.human-stats-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.human-stat-card,
+.human-lifecycle-card,
+.human-location-card,
+.human-contract-card,
+.human-identifiers-card,
+.human-career-intro,
+.human-benefits-card,
+.human-values-card,
+.human-families-card,
+.human-contact-card {
+  padding: 1.2rem;
+}
+
+.human-stat-card span,
+.human-location-card__region,
+.human-contract-card__code,
+.human-leader-card__title,
+.human-location-card__tags span,
+.human-families-card__tags span {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.78rem;
+  color: #7f695c;
+  font-weight: 700;
+}
+
+.human-stat-card strong {
+  display: block;
+  margin: 0.4rem 0;
+  font-size: 1.8rem;
+  color: var(--text-primary);
+}
+
+.human-capability-grid {
+  grid-template-columns: 1fr;
+}
+
+.human-capability-card {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 1rem;
+  overflow: hidden;
+  padding: 1rem;
+}
+
+.human-capability-card.is-reversed .human-capability-card__media {
+  order: 2;
+}
+
+.human-capability-card__media,
+.human-capability-card__content {
+  grid-column: span 6;
+}
+
+.human-capability-card__content {
+  display: grid;
+  gap: 0.9rem;
+  padding: 0.4rem 0;
+}
+
+.human-capability-card__proof {
+  color: #213244;
+  font-weight: 600;
+}
+
+.human-capability-card ul,
+.human-leader-card ul,
+.human-contract-card ul,
+.human-contact-card ul {
+  display: grid;
+  gap: 0.45rem;
+  list-style: disc;
+  padding-left: 1rem;
+}
+
+.human-capability-card li,
+.human-leader-card li,
+.human-contract-card li,
+.human-contact-card li {
+  list-style: inherit;
+}
+
+.human-lifecycle-grid {
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+}
+
+.human-lifecycle-card {
+  min-height: 100%;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.human-leadership-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.human-leader-card {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 1rem;
+  overflow: hidden;
+}
+
+.human-leader-card__body {
+  display: grid;
+  gap: 0.7rem;
+  padding: 1rem 1rem 1rem 0;
+}
+
+.human-location-layout > .media-frame {
+  grid-column: span 4;
+}
+
+.human-location-grid {
+  grid-column: span 8;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.human-location-card__tags,
+.human-families-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.human-location-card__tags span,
+.human-families-card__tags span {
+  padding: 0.55rem 0.75rem;
+  border-radius: 999px;
+  background: rgba(19, 34, 53, 0.06);
+}
+
+.human-contract-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.human-identifiers-card dl,
+.human-values-grid,
+.human-benefits-card > div {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.human-identifiers-card dt {
+  font-weight: 700;
+}
+
+.human-identifiers-card dd {
+  margin: 0.25rem 0 0;
+  color: var(--text-muted);
+}
+
+.human-career-grid {
+  grid-template-columns: 1.2fr 1fr;
+}
+
+.human-contact-card {
+  display: grid;
+  gap: 1rem;
+  text-align: center;
+}
+
+.human-contact-card__details {
+  text-align: left;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+@media (max-width: 1100px) {
+  .human-hero__copy,
+  .human-hero__media-stack,
+  .human-location-layout > .media-frame,
+  .human-location-grid {
+    grid-column: 1 / -1;
+  }
+
+  .human-stats-grid,
+  .human-lifecycle-grid,
+  .human-leadership-grid,
+  .human-location-grid,
+  .human-contract-grid,
+  .human-career-grid,
+  .human-contact-card__details {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .human-capability-card__media,
+  .human-capability-card__content {
+    grid-column: 1 / -1;
+  }
+
+  .human-capability-card.is-reversed .human-capability-card__media {
+    order: 0;
+  }
+}
+
+@media (max-width: 720px) {
+  .human-hero,
+  .human-location-layout,
+  .human-contact-card__details,
+  .human-leader-card {
+    grid-template-columns: 1fr;
+  }
+
+  .human-stats-grid,
+  .human-lifecycle-grid,
+  .human-leadership-grid,
+  .human-location-grid,
+  .human-contract-grid,
+  .human-career-grid,
+  .human-contact-card__details {
+    grid-template-columns: 1fr;
+  }
+
+  .human-leader-card__body {
+    padding: 0 1rem 1rem;
+  }
+}
