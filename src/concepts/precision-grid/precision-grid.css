@@ -1,0 +1,308 @@
+.theme-precision-grid {
+  --accent: #d7263d;
+  --page-bg: #f6f4ef;
+  --surface: rgba(255, 255, 255, 0.92);
+  --surface-strong: rgba(246, 244, 239, 0.96);
+  --text-primary: #111315;
+  --text-muted: #4f5861;
+  --border: rgba(17, 19, 21, 0.16);
+  --shadow: none;
+  --radius-card: 0;
+  --radius-button: 0;
+  --font-display: 'Archivo', 'Inter', sans-serif;
+  --font-body: 'IBM Plex Sans', 'Inter', sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+  color-scheme: light;
+  background: #f6f4ef;
+}
+
+.precision-grid__content {
+  gap: 1.25rem;
+}
+
+.precision-section,
+.precision-hero {
+  display: grid;
+  grid-template-columns: 84px 1fr;
+  gap: 1rem;
+  border-top: 1px solid var(--border);
+  padding-top: 1rem;
+}
+
+.precision-section__index {
+  font-family: var(--font-mono);
+  font-size: 0.86rem;
+  color: var(--accent);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding-top: 0.35rem;
+}
+
+.precision-hero__copy,
+.precision-section__body,
+.precision-contact-card {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.precision-hero {
+  align-items: stretch;
+  grid-template-columns: 84px 1.2fr 0.8fr;
+  min-height: 520px;
+}
+
+.precision-hero__copy h1,
+.precision-section__body h2,
+.precision-contact-card h2 {
+  font-family: var(--font-display);
+  letter-spacing: -0.05em;
+}
+
+.precision-hero__copy h1 {
+  font-size: clamp(2.6rem, 7vw, 5.8rem);
+  line-height: 0.92;
+  max-width: 11ch;
+}
+
+.precision-hero__copy p,
+.precision-section__body p,
+.precision-stat-card p,
+.precision-capability-card p,
+.precision-lifecycle-card p,
+.precision-leader-card p,
+.precision-location-card p,
+.precision-contract-card p,
+.precision-contact-card p {
+  color: var(--text-muted);
+}
+
+.precision-hero__actions,
+.precision-contact-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+}
+
+.precision-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.8rem 0.95rem;
+  border: 1px solid var(--border);
+  background: #ffffff;
+  color: var(--text-primary);
+  transition:
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.precision-button:hover,
+.precision-button:focus-visible {
+  border-color: var(--accent);
+  transform: translateX(2px);
+  outline: none;
+}
+
+.precision-hero__panel {
+  display: grid;
+  gap: 0.85rem;
+  padding: 1rem;
+  align-content: start;
+}
+
+.precision-hero__meta {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+}
+
+.precision-stats-grid,
+.precision-capability-grid,
+.precision-lifecycle-grid,
+.precision-leadership-grid,
+.precision-location-grid,
+.precision-contract-grid,
+.precision-career-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.precision-stats-grid,
+.precision-capability-grid,
+.precision-contract-grid,
+.precision-career-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.precision-stat-card,
+.precision-capability-card,
+.precision-lifecycle-card,
+.precision-leader-card,
+.precision-location-card,
+.precision-contract-card,
+.precision-identifier-card,
+.precision-career-intro,
+.precision-career-families,
+.precision-benefits-card,
+.precision-contact-card {
+  padding: 1rem;
+  border-width: 1px;
+}
+
+.precision-stat-card__id,
+.precision-capability-card__topline,
+.precision-leader-card__meta,
+.precision-location-card p,
+.precision-contract-card__code,
+.precision-identifier-card dt {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.precision-stat-card strong {
+  font-size: 2.1rem;
+}
+
+.precision-capability-card,
+.precision-leader-card,
+.precision-location-card,
+.precision-contract-card {
+  display: grid;
+  gap: 0.8rem;
+  align-content: start;
+}
+
+.precision-capability-card__topline,
+.precision-leader-card__meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--text-muted);
+}
+
+.precision-capability-card ul,
+.precision-location-card ul,
+.precision-contract-card ul,
+.precision-contact-card ul {
+  display: grid;
+  gap: 0.45rem;
+  list-style: none;
+}
+
+.precision-capability-card li,
+.precision-location-card li,
+.precision-contract-card li,
+.precision-contact-card li {
+  padding-top: 0.45rem;
+  border-top: 1px solid var(--border);
+}
+
+.precision-lifecycle-grid {
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  list-style: none;
+}
+
+.precision-lifecycle-card {
+  display: grid;
+  gap: 0.85rem;
+  min-height: 100%;
+}
+
+.precision-lifecycle-card span {
+  color: var(--accent);
+  font-family: var(--font-mono);
+}
+
+.precision-leadership-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.precision-location-layout {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 1rem;
+}
+
+.precision-location-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.precision-identifier-card dl,
+.precision-benefits-card__item,
+.precision-tag-grid {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.precision-identifier-card dd {
+  margin: 0.2rem 0 0;
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+.precision-tag-grid {
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+}
+
+.precision-tag-grid span {
+  padding: 0.7rem;
+  border: 1px solid var(--border);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+}
+
+.precision-contact-card__grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+@media (max-width: 1100px) {
+  .precision-hero {
+    grid-template-columns: 84px 1fr;
+  }
+
+  .precision-hero__panel {
+    grid-column: 2;
+  }
+
+  .precision-stats-grid,
+  .precision-capability-grid,
+  .precision-lifecycle-grid,
+  .precision-leadership-grid,
+  .precision-location-grid,
+  .precision-contract-grid,
+  .precision-career-grid,
+  .precision-contact-card__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .precision-location-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .precision-section,
+  .precision-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .precision-stats-grid,
+  .precision-capability-grid,
+  .precision-lifecycle-grid,
+  .precision-leadership-grid,
+  .precision-location-grid,
+  .precision-contract-grid,
+  .precision-career-grid,
+  .precision-contact-card__grid {
+    grid-template-columns: 1fr;
+  }
+}

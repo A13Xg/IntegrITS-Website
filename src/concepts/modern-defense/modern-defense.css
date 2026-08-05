@@ -1,0 +1,314 @@
+.theme-modern-defense {
+  --accent: #ff3b30;
+  --page-bg: #000000;
+  --surface: rgba(28, 28, 30, 0.72);
+  --surface-strong: rgba(10, 10, 12, 0.82);
+  --text-primary: #f2f2f7;
+  --text-muted: #a4a7b0;
+  --border: rgba(255, 255, 255, 0.12);
+  --shadow: 0 30px 90px rgba(0, 0, 0, 0.32);
+  --radius-card: 0.95rem;
+  --radius-button: 999px;
+  --font-display: 'SF Pro Display', 'Inter', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  background:
+    radial-gradient(circle at top center, rgba(255, 59, 48, 0.18), transparent 34%),
+    radial-gradient(circle at right center, rgba(255, 59, 48, 0.08), transparent 30%), #000;
+}
+
+.modern-defense__aurora {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255, 59, 48, 0.12), transparent 22%),
+    radial-gradient(circle at 80% 15%, rgba(255, 255, 255, 0.05), transparent 25%);
+  filter: blur(40px);
+  opacity: 0.8;
+}
+
+.modern-defense__content {
+  gap: 1.5rem;
+}
+
+.defense-hero {
+  display: grid;
+  gap: 1rem;
+  position: relative;
+}
+
+.defense-hero__backdrop {
+  min-height: 520px;
+}
+
+.defense-hero__overlay {
+  position: absolute;
+  left: clamp(1rem, 4vw, 2rem);
+  bottom: clamp(1rem, 4vw, 2rem);
+  width: min(640px, calc(100% - 2rem));
+  display: grid;
+  gap: 1rem;
+  padding: clamp(1.2rem, 2vw, 1.5rem);
+  backdrop-filter: blur(18px) saturate(160%);
+}
+
+.defense-hero__overlay h1,
+.defense-section-heading h2,
+.defense-contact-card h2 {
+  font-family: var(--font-display);
+  letter-spacing: -0.04em;
+}
+
+.defense-hero__overlay h1 {
+  font-size: clamp(2.8rem, 7vw, 5.8rem);
+  line-height: 0.95;
+}
+
+.defense-hero__overlay p,
+.defense-section-heading p,
+.defense-status-card p,
+.defense-metric-card p,
+.defense-capability-card p,
+.defense-lifecycle-card p,
+.defense-leader-card p,
+.defense-location-card p,
+.defense-contract-card p,
+.defense-contact-card p {
+  color: var(--text-muted);
+}
+
+.defense-hero__actions,
+.defense-contact-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.defense-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 59, 48, 0.35);
+  background: rgba(17, 17, 19, 0.7);
+  backdrop-filter: blur(12px);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.defense-button:hover,
+.defense-button:focus-visible {
+  transform: translateY(-1px);
+  box-shadow: 0 0 24px rgba(255, 59, 48, 0.18);
+  border-color: rgba(255, 59, 48, 0.7);
+  outline: none;
+}
+
+.defense-button--primary {
+  background: rgba(255, 59, 48, 0.92);
+  color: #050505;
+}
+
+.defense-hero__status-row,
+.defense-stat-grid,
+.defense-capability-grid,
+.defense-lifecycle-grid,
+.defense-leadership-grid,
+.defense-location-grid,
+.defense-contract-grid,
+.defense-career-grid,
+.defense-contact-card__details {
+  display: grid;
+  gap: 1rem;
+}
+
+.defense-hero__status-row,
+.defense-stat-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.defense-status-card,
+.defense-metric-card,
+.defense-capability-card,
+.defense-lifecycle-card,
+.defense-leader-card,
+.defense-location-card,
+.defense-contract-card,
+.defense-identifiers-card,
+.defense-career-card,
+.defense-benefits-card,
+.defense-values-card,
+.defense-families-card,
+.defense-contact-card {
+  padding: 1rem;
+  backdrop-filter: blur(18px) saturate(160%);
+}
+
+.defense-status-card span,
+.defense-metric-card svg,
+.defense-leader-card__title,
+.defense-location-card__region,
+.defense-contract-card__head p,
+.defense-identifiers-grid span {
+  color: #f6b6b2;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.defense-status-card strong,
+.defense-metric-card strong,
+.defense-identifiers-grid strong {
+  display: block;
+  margin: 0.4rem 0;
+  font-size: 1.6rem;
+}
+
+.defense-section-heading {
+  display: grid;
+  gap: 0.6rem;
+  margin-bottom: 0.9rem;
+}
+
+.defense-section-heading h2,
+.defense-contact-card h2 {
+  font-size: clamp(1.9rem, 4vw, 3.1rem);
+}
+
+.defense-capability-grid,
+.defense-contract-grid,
+.defense-career-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.defense-capability-card,
+.defense-leader-card,
+.defense-contract-card,
+.defense-location-card,
+.defense-values-card,
+.defense-families-card {
+  overflow: hidden;
+  display: grid;
+  gap: 0.8rem;
+  align-content: start;
+}
+
+.defense-capability-card ul,
+.defense-contract-card ul,
+.defense-contact-card ul {
+  display: grid;
+  gap: 0.45rem;
+  padding-left: 1rem;
+  list-style: disc;
+}
+
+.defense-capability-card li,
+.defense-contract-card li,
+.defense-contact-card li {
+  list-style: inherit;
+}
+
+.defense-lifecycle-grid {
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+}
+
+.defense-lifecycle-card {
+  min-height: 100%;
+  display: grid;
+  gap: 0.6rem;
+}
+
+.defense-lifecycle-card span {
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.defense-leadership-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.defense-location-layout {
+  display: grid;
+  grid-template-columns: 0.95fr 1.05fr;
+  gap: 1rem;
+}
+
+.defense-location-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.defense-location-card__tags,
+.defense-values-card__tags,
+.defense-families-card__grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.defense-location-card__tags span,
+.defense-values-card__tags span,
+.defense-families-card__grid span {
+  padding: 0.55rem 0.75rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 0.8rem;
+}
+
+.defense-identifiers-grid,
+.defense-benefits-card > div,
+.defense-values-card__detail {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.defense-contact-card {
+  display: grid;
+  gap: 1rem;
+}
+
+.defense-contact-card__details {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+@media (max-width: 1100px) {
+  .defense-hero__status-row,
+  .defense-stat-grid,
+  .defense-capability-grid,
+  .defense-lifecycle-grid,
+  .defense-leadership-grid,
+  .defense-location-grid,
+  .defense-contract-grid,
+  .defense-career-grid,
+  .defense-contact-card__details {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .defense-location-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .defense-hero__overlay {
+    position: relative;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+  }
+
+  .defense-hero__status-row,
+  .defense-stat-grid,
+  .defense-capability-grid,
+  .defense-lifecycle-grid,
+  .defense-leadership-grid,
+  .defense-location-grid,
+  .defense-contract-grid,
+  .defense-career-grid,
+  .defense-contact-card__details {
+    grid-template-columns: 1fr;
+  }
+}

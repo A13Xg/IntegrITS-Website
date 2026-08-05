@@ -1,0 +1,31 @@
+<svg width="1400" height="900" viewBox="0 0 1400 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1400" height="900" rx="28" fill="#0F1720" />
+  <path d="M130 700C290 640 310 240 510 230C730 220 710 710 920 650C1120 590 1160 260 1260 220" stroke="#FF5A6B" stroke-width="5" stroke-dasharray="12 12" />
+  <path d="M120 170L1280 170" stroke="#34495E" stroke-width="2" stroke-dasharray="10 12" />
+  <path d="M120 460L1280 460" stroke="#34495E" stroke-width="2" stroke-dasharray="10 12" />
+  <path d="M320 120V780" stroke="#34495E" stroke-width="2" stroke-dasharray="10 12" />
+  <path d="M700 120V780" stroke="#34495E" stroke-width="2" stroke-dasharray="10 12" />
+  <path d="M1070 120V780" stroke="#34495E" stroke-width="2" stroke-dasharray="10 12" />
+  <g fill="#FF5A6B">
+    <circle cx="270" cy="320" r="14" />
+    <circle cx="420" cy="540" r="14" />
+    <circle cx="670" cy="330" r="14" />
+    <circle cx="810" cy="600" r="14" />
+    <circle cx="930" cy="270" r="14" />
+    <circle cx="1020" cy="470" r="14" />
+    <circle cx="1160" cy="380" r="14" />
+    <circle cx="1120" cy="630" r="14" />
+    <circle cx="1210" cy="190" r="14" />
+  </g>
+  <g fill="#F7FAFC" font-family="Arial, sans-serif" font-size="28" font-weight="700">
+    <text x="300" y="310">San Diego HQ</text>
+    <text x="450" y="530">Edwards AFB</text>
+    <text x="700" y="320">Fort Irwin</text>
+    <text x="840" y="590">Phoenix</text>
+    <text x="960" y="260">Hill AFB</text>
+    <text x="1045" y="460">Nellis AFB</text>
+    <text x="1188" y="372">Raleigh</text>
+    <text x="1148" y="620">Pearl Harbor</text>
+    <text x="1232" y="182">Kauai / PMRF</text>
+  </g>
+</svg>
