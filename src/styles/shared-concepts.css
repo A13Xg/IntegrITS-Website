@@ -19,8 +19,9 @@
   font-family: var(--font-body);
 }
 
-.concept-shell main {
-  outline: none;
+.concept-shell main:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
 }
 
 .concept-toolbar,
