@@ -72,7 +72,8 @@
   transform: translateY(-1px);
   border-color: color-mix(in srgb, var(--accent) 50%, white 10%);
   background: color-mix(in srgb, var(--surface) 88%, transparent);
-  outline: none;
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
 }
 
 .concept-toolbar__current,
@@ -157,7 +158,8 @@
 .concept-nav__link:focus-visible {
   color: var(--text-primary);
   background: color-mix(in srgb, var(--accent) 14%, transparent);
-  outline: none;
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
 }
 
 .concept-content {

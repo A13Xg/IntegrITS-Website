@@ -110,7 +110,8 @@
   transform: translate(-2px, -2px);
   border-color: var(--accent);
   box-shadow: 0 0 14px rgba(255, 42, 59, 0.25);
-  outline: none;
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
 }
 
 .mission-button--primary {

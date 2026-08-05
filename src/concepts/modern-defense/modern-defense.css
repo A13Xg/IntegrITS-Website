@@ -104,7 +104,8 @@
   transform: translateY(-1px);
   box-shadow: 0 0 24px rgba(255, 59, 48, 0.18);
   border-color: rgba(255, 59, 48, 0.7);
-  outline: none;
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
 }
 
 .defense-button--primary {
