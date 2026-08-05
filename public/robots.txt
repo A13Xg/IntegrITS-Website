@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: /IntegrITS-Website/sitemap.xml
