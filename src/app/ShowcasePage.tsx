@@ -27,7 +27,7 @@ export default function ShowcasePage() {
     <main className="showcase-page" id="main-content" tabIndex={-1}>
       <div className="showcase-page__backdrop" aria-hidden="true" />
       <section className="showcase-hero" aria-labelledby="showcase-title">
-        <p className="showcase-hero__eyebrow">IntegrITS Corporation</p>
+        <p className="showcase-hero__eyebrow">{integritsContent.brand.name}</p>
         <h1 id="showcase-title">IntegrITS Website Design Exploration</h1>
         <p className="showcase-hero__subtitle">
           Five distinct visual directions built from one shared company story—each one
