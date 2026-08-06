@@ -142,6 +142,7 @@ were run directly and returned success as shown above.
 
 ## Commits
 
-Not yet committed — awaiting confirmation this report satisfies the task
-before creating the commit (repo state has these files staged/untracked
-only; no commit created by this agent run).
+- `7f3867c` — "feat: add typed content model and data layer for company facts"
+  (base: `d8efccb`, branch `claude-gen`). 9 files changed: the 6 new
+  deliverable files plus `tsconfig.json` and `vitest.config.ts` config
+  updates and this report.
