@@ -95,8 +95,13 @@ function Layout({ children }: { children: ReactNode }) {
 
   return (
     <>
+      <a href="#main-content" className="skip-link">
+        Skip to content
+      </a>
       <Navigation variant={variant} concept={current} />
-      {children}
+      <div id="main-content" tabIndex={-1}>
+        {children}
+      </div>
       {current && <ConceptSwitcher />}
       <Footer variant={variant} />
     </>

@@ -1,12 +1,27 @@
+/**
+ * Shared structural frame for the header. Concepts restyle colors, the
+ * wordmark's font treatment, and borders in their own CSS modules — this
+ * file only fixes layout (sticky positioning, flex arrangement, spacing).
+ */
+
 .navigation {
+  position: sticky;
+  top: 0;
+  z-index: 40;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
-  padding: 1rem 1.5rem;
+  flex-wrap: wrap;
+  gap: var(--space-sm) var(--space-md);
+  padding: var(--space-sm) var(--space-md);
+  background: var(--nav-background, canvas);
+  color: var(--nav-color, canvastext);
 }
 
 .wordmark {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   font-weight: 700;
   font-size: 1.125rem;
   letter-spacing: 0.02em;
@@ -15,6 +30,17 @@
 }
 
 .conceptIndicator {
-  font-size: 0.875rem;
+  font-size: var(--font-size-small);
   opacity: 0.8;
+}
+
+@media (max-width: 640px) {
+  .navigation {
+    justify-content: flex-start;
+  }
+
+  .conceptIndicator {
+    order: 1;
+    width: 100%;
+  }
 }

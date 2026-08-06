@@ -1,0 +1,169 @@
+/**
+ * Global reset, typography, and spacing foundation shared by every concept.
+ *
+ * Concepts override colors, font families, and component-level details in
+ * their own scoped CSS modules — this file only establishes structural
+ * defaults (box model, type scale, spacing tokens, container width) so that
+ * all five designs share the same baseline rhythm.
+ */
+
+/* ---------------------------------------------------------------------- */
+/* Reset                                                                   */
+/* ---------------------------------------------------------------------- */
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+/* ---------------------------------------------------------------------- */
+/* Design tokens                                                          */
+/* ---------------------------------------------------------------------- */
+
+:root {
+  /* Spacing scale — fluid between mobile (360px) and desktop (1280px). */
+  --space-xs: clamp(0.25rem, 0.2rem + 0.25vw, 0.5rem);
+  --space-sm: clamp(0.5rem, 0.4rem + 0.5vw, 0.75rem);
+  --space-md: clamp(1rem, 0.85rem + 0.75vw, 1.5rem);
+  --space-lg: clamp(1.5rem, 1.2rem + 1.5vw, 2.5rem);
+  --space-xl: clamp(2.5rem, 2rem + 2.5vw, 4rem);
+  --space-2xl: clamp(4rem, 3rem + 5vw, 7rem);
+
+  /* Typography scale — fluid clamp() sizes for headings and body text. */
+  --font-size-body: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+  --font-size-small: clamp(0.8125rem, 0.8rem + 0.15vw, 0.875rem);
+  --font-size-h1: clamp(2.25rem, 1.7rem + 2.75vw, 4rem);
+  --font-size-h2: clamp(1.75rem, 1.4rem + 1.75vw, 2.75rem);
+  --font-size-h3: clamp(1.375rem, 1.15rem + 1.1vw, 1.875rem);
+  --font-size-h4: clamp(1.125rem, 1rem + 0.6vw, 1.375rem);
+  --font-size-h5: clamp(1rem, 0.9rem + 0.4vw, 1.125rem);
+  --font-size-h6: clamp(0.9375rem, 0.875rem + 0.3vw, 1rem);
+
+  --line-height-body: 1.6;
+  --line-height-heading: 1.2;
+  --measure: 65ch;
+
+  --container-max-width: 1280px;
+  --container-padding-inline: var(--space-md);
+
+  --font-family-base:
+    Inter, system-ui, -apple-system, 'Segoe UI', Avenir, Helvetica, Arial, sans-serif;
+}
+
+/* ---------------------------------------------------------------------- */
+/* Base typography                                                        */
+/* ---------------------------------------------------------------------- */
+
+body {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-body);
+  font-weight: 400;
+  line-height: var(--line-height-body);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 700;
+  line-height: var(--line-height-heading);
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: var(--font-size-h1);
+}
+
+h2 {
+  font-size: var(--font-size-h2);
+}
+
+h3 {
+  font-size: var(--font-size-h3);
+}
+
+h4 {
+  font-size: var(--font-size-h4);
+}
+
+h5 {
+  font-size: var(--font-size-h5);
+}
+
+h6 {
+  font-size: var(--font-size-h6);
+}
+
+p,
+li {
+  max-width: var(--measure);
+  line-height: var(--line-height-body);
+}
+
+small {
+  font-size: var(--font-size-small);
+}
+
+a {
+  color: inherit;
+}
+
+/* ---------------------------------------------------------------------- */
+/* Layout utilities                                                       */
+/* ---------------------------------------------------------------------- */
+
+.container {
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin-inline: auto;
+  padding-inline: var(--container-padding-inline);
+}
+
+.stack > * + * {
+  margin-top: var(--space-md);
+}
+
+.visually-hidden-when-empty:empty {
+  display: none;
+}

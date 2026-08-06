@@ -1,0 +1,60 @@
+.skeleton {
+  display: block;
+  width: 100%;
+}
+
+.skeleton[data-variant='text'] {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.line,
+.image,
+.card {
+  display: block;
+  border-radius: 6px;
+  background: linear-gradient(
+    90deg,
+    rgb(128 128 128 / 0.14) 25%,
+    rgb(128 128 128 / 0.24) 37%,
+    rgb(128 128 128 / 0.14) 63%
+  );
+  background-size: 400% 100%;
+  animation: shimmer 1.6s ease-in-out infinite;
+}
+
+.line {
+  width: 100%;
+  height: 1em;
+}
+
+.image {
+  width: 100%;
+  height: 12rem;
+  border-radius: 8px;
+}
+
+.card {
+  width: 100%;
+  height: 16rem;
+  border-radius: 12px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .line,
+  .image,
+  .card {
+    animation: none;
+    background: rgb(128 128 128 / 0.18);
+  }
+}
+
+@media (forced-colors: active) {
+  .line,
+  .image,
+  .card {
+    background: Canvas;
+    border: 1px dashed GrayText;
+  }
+}

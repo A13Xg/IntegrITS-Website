@@ -1,14 +1,23 @@
+/**
+ * Shared structural frame for the footer. Concepts restyle background,
+ * borders, and type here only via their own CSS modules — layout stays
+ * consistent across all five designs.
+ */
+
 .footer {
-  padding: 1.5rem;
+  padding: var(--space-lg) var(--space-md);
   text-align: center;
-  font-size: 0.875rem;
+  background: var(--footer-background, canvas);
+  color: var(--footer-color, canvastext);
 }
 
 .credit {
-  margin: 0 0 0.25rem;
+  margin: 0 0 var(--space-xs);
+  font-size: var(--font-size-small);
 }
 
 .copyright {
   margin: 0;
+  font-size: var(--font-size-small);
   opacity: 0.7;
 }

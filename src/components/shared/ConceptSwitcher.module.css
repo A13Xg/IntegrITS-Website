@@ -1,38 +1,68 @@
+/**
+ * Fixed demo toolbar shared by every concept route. Purely structural —
+ * concepts may restyle color/border via their own CSS modules but the
+ * position, spacing, and responsive collapse behavior stay consistent.
+ */
+
 .switcher {
   position: fixed;
-  right: 1rem;
-  bottom: 1rem;
+  right: var(--space-md);
+  bottom: var(--space-md);
   z-index: 50;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem 0.75rem;
+  gap: var(--space-xs);
+  padding: var(--space-xs) var(--space-sm);
   border-radius: 999px;
   background: rgba(0, 0, 0, 0.85);
   color: #fff;
+  box-shadow: 0 8px 24px -8px rgb(0 0 0 / 0.4);
+  transition-duration: var(--duration-component);
+  transition-timing-function: var(--ease-standard);
+  transition-property: transform, box-shadow;
 }
 
 .homeButton,
 .navButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  min-width: 44px;
   background: transparent;
   border: none;
   color: inherit;
   cursor: pointer;
-  font-size: 0.875rem;
+  font-size: var(--font-size-small);
   text-decoration: none;
-  padding: 0.25rem 0.5rem;
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: 999px;
+}
+
+.homeButton:hover,
+.navButton:hover {
+  background: rgba(255, 255, 255, 0.12);
 }
 
 .counter {
-  font-size: 0.75rem;
+  font-size: var(--font-size-small);
   opacity: 0.8;
   white-space: nowrap;
+  padding-inline: var(--space-xs);
 }
 
 @media (max-width: 640px) {
   .switcher {
-    left: 1rem;
-    right: 1rem;
+    left: var(--space-md);
+    right: var(--space-md);
     justify-content: space-between;
+  }
+}
+
+@media (forced-colors: active) {
+  .switcher {
+    border: 1px solid CanvasText;
+    background: Canvas;
+    color: CanvasText;
   }
 }
