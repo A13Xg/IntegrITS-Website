@@ -24,8 +24,8 @@
     <nav class="primary-nav" aria-label="Primary">
       <ul>
         <li><a href="#why">Why IntegrITS</a></li>
-        <li><a href="#lifecycle">Lifecycle</a></li>
         <li><a href="#footprint">Footprint</a></li>
+        <li><a href="#lifecycle">Lifecycle</a></li>
         <li><a href="#leadership">Leadership</a></li>
         <li><a href="#careers">Careers</a></li>
         <li><a href="#contact">Contact</a></li>
@@ -43,12 +43,13 @@
   <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile">
     <ul>
       <li><a href="#why">Why IntegrITS</a></li>
-      <li><a href="#lifecycle">Lifecycle</a></li>
       <li><a href="#footprint">Footprint</a></li>
+      <li><a href="#lifecycle">Lifecycle</a></li>
       <li><a href="#leadership">Leadership</a></li>
       <li><a href="#careers">Careers</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
+    <a class="btn btn-primary mobile-nav-cta" href="#contact">Discuss a Requirement</a>
   </nav>
 </header>
 
@@ -113,25 +114,6 @@
     </div>
   </section>
 
-  <!-- LIFECYCLE -->
-  <section class="section lifecycle" id="lifecycle" aria-labelledby="lifecycle-heading">
-    <div class="container">
-      <p class="ref-tag">Ref B &mdash; Integrated Mission Support</p>
-      <h2 id="lifecycle-heading">Define. Engineer. Prepare. Execute. Protect. Analyze. Sustain.</h2>
-      <p class="section-lede">Our customers rarely need only one discipline. IntegrITS supports the complete system life cycle, aligning technical specialists, program professionals, and enterprise technologists around mission outcomes.</p>
-
-      <ol class="flow">
-        <li><span class="flow-index">01</span><span class="flow-label">Define</span><span class="flow-desc">Requirements, architecture, acquisition, planning</span></li>
-        <li><span class="flow-index">02</span><span class="flow-label">Engineer</span><span class="flow-desc">Systems design, infrastructure, integration</span></li>
-        <li><span class="flow-index">03</span><span class="flow-label">Prepare</span><span class="flow-desc">Test plans, readiness reviews, policy, training</span></li>
-        <li><span class="flow-index">04</span><span class="flow-label">Execute</span><span class="flow-desc">Mission support, test conduct, program operations</span></li>
-        <li><span class="flow-index">05</span><span class="flow-label">Protect</span><span class="flow-desc">Cybersecurity, safety, risk, quality</span></li>
-        <li><span class="flow-index">06</span><span class="flow-label">Analyze</span><span class="flow-desc">Data collection, performance metrics, reporting</span></li>
-        <li><span class="flow-index">07</span><span class="flow-label">Sustain</span><span class="flow-desc">Maintenance, logistics, modernization, continuity</span></li>
-      </ol>
-    </div>
-  </section>
-
   <!-- FOOTPRINT -->
   <section class="section footprint" id="footprint" aria-labelledby="footprint-heading">
     <div class="container">
@@ -144,45 +126,69 @@
           <p class="board-caption">United States &mdash; operational locations</p>
           <div class="board-grid">
             <img class="map-img" src="assets/img/images/greyMap.png" alt="Map of the United States with IntegrITS operational locations marked." />
-            <button class="pin pin-hq is-active" style="left:12.7%;top:61.3%" data-name="San Diego, California" data-note="Corporate headquarters. NAVWAR and NIWC Pacific support, program management, C4I and tactical communications, contracts and corporate operations." data-tag="HQ" data-slot="location-san-diego">
+            <button class="pin pin-hq is-active" style="left:12.7%;top:61.3%" data-name="San Diego, California" data-note="Corporate headquarters. NAVWAR and NIWC Pacific support, program management, C4I and tactical communications, contracts and corporate operations." data-tag="HQ" data-slot="location-san-diego" data-photo="assets/img/locations/San-Diego_location.png">
               <span class="visually-hidden">San Diego, California — headquarters</span>
             </button>
-            <button class="pin" style="left:12.7%;top:51.3%" data-name="Edwards Air Force Base, California" data-note="Flight-test instrumentation, range systems administration, AWS cloud operations, virtual-server support, network and infrastructure engineering." data-slot="location-edwards-afb">
+            <button class="pin" style="left:12.7%;top:51.3%" data-name="Edwards Air Force Base, California" data-note="Flight-test instrumentation, range systems administration, AWS cloud operations, virtual-server support, network and infrastructure engineering." data-slot="location-edwards-afb" data-photo="assets/img/locations/Edwards-AFB_location.png">
               <span class="visually-hidden">Edwards Air Force Base, California</span>
             </button>
-            <button class="pin" style="left:14.6%;top:52.2%" data-name="Fort Irwin, California" data-note="Field operations supporting test and training environments." data-slot="location-fort-irwin">
+            <button class="pin" style="left:14.6%;top:52.2%" data-name="Fort Irwin, California" data-note="Field operations supporting test and training environments." data-slot="location-fort-irwin" data-photo="assets/img/locations/Fort-Irwin_location.png">
               <span class="visually-hidden">Fort Irwin, California</span>
             </button>
-            <button class="pin" style="left:17.9%;top:51.3%" data-name="Nellis Air Force Base, Nevada" data-note="Tactical range support, operational test environments, systems administration, server and infrastructure support." data-slot="location-nellis-afb">
+            <button class="pin" style="left:17.9%;top:51.3%" data-name="Nellis Air Force Base, Nevada" data-note="Tactical range support, operational test environments, systems administration, server and infrastructure support." data-slot="location-nellis-afb" data-photo="assets/img/locations/Nellis-AFB_location.png">
               <span class="visually-hidden">Nellis Air Force Base, Nevada</span>
             </button>
-            <button class="pin" style="left:24.1%;top:38.5%" data-name="Hill Air Force Base, Utah" data-note="Field operations supporting range and mission systems." data-slot="location-hill-afb">
+            <button class="pin" style="left:24.1%;top:38.5%" data-name="Hill Air Force Base, Utah" data-note="Field operations supporting range and mission systems." data-slot="location-hill-afb" data-photo="assets/img/locations/Hill-AFB_location.png">
               <span class="visually-hidden">Hill Air Force Base, Utah</span>
             </button>
-            <button class="pin" style="left:22.8%;top:62.5%" data-name="Phoenix, Arizona" data-note="Field operations supporting range and mission systems." data-slot="location-phoenix">
+            <button class="pin" style="left:22.8%;top:62.5%" data-name="Phoenix, Arizona" data-note="Field operations supporting range and mission systems." data-slot="location-phoenix" data-photo="assets/img/locations/Phoenix-AZ_location.png">
               <span class="visually-hidden">Phoenix, Arizona</span>
             </button>
-            <button class="pin" style="left:84.6%;top:53.2%" data-name="Raleigh, North Carolina" data-note="Field operations, including corporate communications presence." data-slot="location-raleigh">
+            <button class="pin" style="left:84.6%;top:53.2%" data-name="Raleigh, North Carolina" data-note="Field operations, including corporate communications presence." data-slot="location-raleigh" data-photo="assets/img/locations/Integrits-Corporate_location.png">
               <span class="visually-hidden">Raleigh, North Carolina</span>
             </button>
-            <button class="pin" style="left:7.5%;top:77.4%" data-name="Kauai, Hawaii &mdash; Pacific Missile Range Facility" data-note="Radar, telemetry, optical tracking, range instrumentation, Ballistic Missile Defense test support, mission support." data-slot="location-kauai">
+            <button class="pin" style="left:7.5%;top:77.4%" data-name="Kauai, Hawaii &mdash; Pacific Missile Range Facility" data-note="Radar, telemetry, optical tracking, range instrumentation, Ballistic Missile Defense test support, mission support." data-slot="location-kauai" data-photo="assets/img/locations/Kauai-PSMR_location.png">
               <span class="visually-hidden">Kauai, Hawaii</span>
             </button>
-            <button class="pin" style="left:10.9%;top:81.3%" data-name="Pearl Harbor, Hawaii" data-note="Mobile At-Sea Sensor System vessel operations, in-port and at-sea support, shipboard maintenance and repair." data-slot="location-pearl-harbor">
+            <button class="pin" style="left:10.9%;top:81.3%" data-name="Pearl Harbor, Hawaii" data-note="Mobile At-Sea Sensor System vessel operations, in-port and at-sea support, shipboard maintenance and repair." data-slot="location-pearl-harbor" data-photo="assets/img/locations/Pearl-Harbor_location.png">
               <span class="visually-hidden">Pearl Harbor, Hawaii</span>
             </button>
           </div>
         </div>
 
         <div class="readout" id="footprint-readout" aria-live="polite">
-          <p class="readout-tag">Readout</p>
           <figure class="img-slot readout-media" style="--ar:4/3">
-            <figcaption class="img-slot-label">location&#8209;san&#8209;diego</figcaption>
+            <img id="readout-photo" src="assets/img/locations/San-Diego_location.png" alt="San Diego, California" loading="lazy" />
           </figure>
           <p class="readout-name">San Diego, California</p>
           <p class="readout-note">Corporate headquarters. NAVWAR and NIWC Pacific support, program management, C4I and tactical communications, contracts and corporate operations.</p>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- LIFECYCLE -->
+  <section class="section lifecycle" id="lifecycle" aria-labelledby="lifecycle-heading">
+    <div class="container">
+      <p class="ref-tag">Ref B &mdash; Integrated Mission Support</p>
+      <h2 id="lifecycle-heading" class="visually-hidden">Define. Engineer. Prepare. Execute. Protect. Analyze. Sustain.</h2>
+
+      <div class="flow-chart" id="flow-chart">
+        <svg class="flow-line" viewBox="0 0 100 4" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+          <line x1="0" y1="2" x2="100" y2="2" pathLength="100"></line>
+        </svg>
+        <ol class="flow">
+          <li><span class="flow-index">01</span><span class="flow-label">Define</span><span class="flow-desc">Requirements, architecture, acquisition, planning</span></li>
+          <li><span class="flow-index">02</span><span class="flow-label">Engineer</span><span class="flow-desc">Systems design, infrastructure, integration</span></li>
+          <li><span class="flow-index">03</span><span class="flow-label">Prepare</span><span class="flow-desc">Test plans, readiness reviews, policy, training</span></li>
+          <li><span class="flow-index">04</span><span class="flow-label">Execute</span><span class="flow-desc">Mission support, test conduct, program operations</span></li>
+          <li><span class="flow-index">05</span><span class="flow-label">Protect</span><span class="flow-desc">Cybersecurity, safety, risk, quality</span></li>
+          <li><span class="flow-index">06</span><span class="flow-label">Analyze</span><span class="flow-desc">Data collection, performance metrics, reporting</span></li>
+          <li><span class="flow-index">07</span><span class="flow-label">Sustain</span><span class="flow-desc">Maintenance, logistics, modernization, continuity</span></li>
+        </ol>
+      </div>
+
+      <p class="section-lede">Our customers rarely need only one discipline. IntegrITS supports the complete system life cycle, aligning technical specialists, program professionals, and enterprise technologists around mission outcomes.</p>
     </div>
   </section>
 
@@ -195,7 +201,7 @@
       </div>
       <div class="veteran-copy">
         <p class="ref-tag">Ref D &mdash; Veteran Workforce</p>
-        <h2 id="veteran-heading">Experience you cannot learn from a manual.</h2>
+        <h2 id="veteran-heading"><span class="heading-accent">Experience</span> you cannot learn from a manual.</h2>
         <p>Our veterans bring operational awareness, accountability, teamwork, and discipline &mdash; a direct understanding of the customers and missions we support. IntegrITS combines that experience with more than 400 combined years of engineering and technical knowledge, kept current as test environments, acquisition requirements, and cybersecurity standards evolve.</p>
       </div>
       <figure class="img-slot veteran-media" style="--ar:8/5">

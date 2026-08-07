@@ -21,7 +21,7 @@
   }
 
   /* Section reveal on scroll */
-  var revealTargets = document.querySelectorAll(".section > .container > *");
+  var revealTargets = document.querySelectorAll(".section > .container > *:not(.flow-chart)");
   revealTargets.forEach(function (el) { el.setAttribute("data-reveal", ""); });
 
   if ("IntersectionObserver" in window && !prefersReducedMotion) {
@@ -109,13 +109,37 @@
     sections.forEach(function (s) { navObserver.observe(s); });
   }
 
+  /* Lifecycle flow chart: line draws first, then each step floats in, in order */
+  var flowChart = document.getElementById("flow-chart");
+  if (flowChart) {
+    if (prefersReducedMotion || !("IntersectionObserver" in window)) {
+      flowChart.classList.add("is-drawn", "items-visible");
+    } else {
+      var flowObserver = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              flowChart.classList.add("is-drawn");
+              window.setTimeout(function () {
+                flowChart.classList.add("items-visible");
+              }, 700);
+              flowObserver.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.35 }
+      );
+      flowObserver.observe(flowChart);
+    }
+  }
+
   /* Footprint board readout */
   var pins = document.querySelectorAll(".pin");
   var readout = document.getElementById("footprint-readout");
   if (pins.length && readout) {
     var readoutName = readout.querySelector(".readout-name");
     var readoutNote = readout.querySelector(".readout-note");
-    var readoutLabel = readout.querySelector(".readout-media .img-slot-label");
+    var readoutPhoto = document.getElementById("readout-photo");
     var swapDelay = prefersReducedMotion ? 0 : 160;
 
     pins.forEach(function (pin) {
@@ -126,8 +150,9 @@
         window.setTimeout(function () {
           readoutName.textContent = pin.getAttribute("data-name");
           readoutNote.textContent = pin.getAttribute("data-note");
-          if (readoutLabel) {
-            readoutLabel.textContent = pin.getAttribute("data-slot");
+          if (readoutPhoto) {
+            readoutPhoto.src = pin.getAttribute("data-photo");
+            readoutPhoto.alt = pin.getAttribute("data-name");
           }
           readout.classList.remove("is-updating");
         }, swapDelay);
@@ -180,7 +205,7 @@
     }
 
     if (!prefersReducedMotion) {
-      var autoScrollSpeed = 0.4;
+      var autoScrollSpeed = 0.6;
       var isPaused = false;
 
       function tick() {
