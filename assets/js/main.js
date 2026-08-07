@@ -134,34 +134,113 @@
   var pins = document.querySelectorAll(".pin");
   var readout = document.getElementById("footprint-readout");
   if (pins.length && readout) {
-    var readoutName = readout.querySelector(".readout-name");
+    var readoutName = document.getElementById("readout-name-btn");
     var readoutNote = readout.querySelector(".readout-note");
     var readoutPhoto = document.getElementById("readout-photo");
-    var swapDelay = prefersReducedMotion ? 0 : 160;
+    var readoutMedia = document.getElementById("readout-media");
     var readoutRequestId = 0;
 
-    /* Location card slideshow: cycles the real photo plus placeholder
-       slides every 3s, crossfading with a small bounce. Restarts from
-       slide 0 whenever the selected location changes. */
-    var readoutSlides = readout.querySelectorAll(".readout-slide");
+    function pinPhotos(pin) {
+      return [
+        pin.getAttribute("data-photo"),
+        pin.getAttribute("data-photo-2"),
+        pin.getAttribute("data-photo-3")
+      ].filter(Boolean);
+    }
+
+    function whenFadedOut() {
+      if (prefersReducedMotion) return Promise.resolve();
+      return new Promise(function (resolve) {
+        var done = false;
+        function finish() {
+          if (done) return;
+          done = true;
+          readout.removeEventListener("transitionend", onEnd);
+          resolve();
+        }
+        function onEnd(e) {
+          if (e.target === readout && e.propertyName === "opacity") finish();
+        }
+        readout.addEventListener("transitionend", onEnd);
+        // Fallback in case the transition never fires (e.g. tab backgrounded).
+        window.setTimeout(finish, 260);
+      });
+    }
+
+    // Loads straight into the real, visible <img> element and waits for
+    // ITS OWN load/error event — not a decoy Image() object whose
+    // "ready" signal only means the browser's HTTP cache *might* be
+    // warm for the real element. Under cache-disabled or cache-averse
+    // conditions that assumption doesn't hold, which is exactly what
+    // let the visible photo still be mid-fetch after its stand-in had
+    // already resolved. Loading the real element removes that gap
+    // entirely: whatever we're waiting on IS what gets shown.
+    function whenPhotoReady(src) {
+      if (!src || !readoutPhoto) return Promise.resolve();
+      return new Promise(function (resolve) {
+        var done = false;
+        function finish() {
+          if (done) return;
+          done = true;
+          readoutPhoto.removeEventListener("load", finish);
+          readoutPhoto.removeEventListener("error", finish);
+          resolve();
+        }
+        readoutPhoto.addEventListener("load", finish);
+        readoutPhoto.addEventListener("error", finish);
+        readoutPhoto.src = src;
+        if (readoutPhoto.complete) finish();
+      });
+    }
+
+    /* Location card slideshow: when a location has more than one photo,
+       cycle through them every 3s. Slide elements are rebuilt per
+       selection from that pin's own data-photo/-2/-3, never left over
+       from whichever location was selected before. */
     var slideTimer = null;
     var slideIndex = 0;
     function showSlide(i) {
+      var slides = readoutMedia.querySelectorAll(".readout-slide");
       slideIndex = i;
-      readoutSlides.forEach(function (s, idx) {
+      slides.forEach(function (s, idx) {
         s.classList.toggle("is-active", idx === i);
       });
     }
     function restartSlideshow() {
       if (slideTimer) window.clearInterval(slideTimer);
       showSlide(0);
-      if (readoutSlides.length > 1 && !prefersReducedMotion) {
+      var count = readoutMedia.querySelectorAll(".readout-slide").length;
+      if (count > 1 && !prefersReducedMotion) {
         slideTimer = window.setInterval(function () {
-          showSlide((slideIndex + 1) % readoutSlides.length);
+          showSlide((slideIndex + 1) % count);
         }, 3000);
       }
     }
-    restartSlideshow();
+
+    // Rebuilds the slide list for the currently selected location.
+    // `firstSlideImg` is the already-loaded <img id="readout-photo">
+    // reused as slide 0; any additional photos load natively in the
+    // background since the slideshow gives them seconds before they're
+    // ever shown.
+    function rebuildSlides(photos, name) {
+      readoutMedia.querySelectorAll(".readout-slide").forEach(function (s) { s.remove(); });
+
+      var first = document.createElement("div");
+      first.className = "readout-slide is-active";
+      first.appendChild(readoutPhoto);
+      readoutMedia.appendChild(first);
+
+      for (var i = 1; i < photos.length; i++) {
+        var slide = document.createElement("div");
+        slide.className = "readout-slide";
+        var img = document.createElement("img");
+        img.src = photos[i];
+        img.alt = name;
+        img.loading = "lazy";
+        slide.appendChild(img);
+        readoutMedia.appendChild(slide);
+      }
+    }
 
     pins.forEach(function (pin) {
       pin.addEventListener("click", function () {
@@ -170,40 +249,114 @@
         readout.classList.add("is-updating");
 
         var requestId = ++readoutRequestId;
-        var photoSrc = pin.getAttribute("data-photo");
+        var photos = pinPhotos(pin);
 
-        function applyUpdate() {
+        // Only reveal the card once it has actually faded to invisible
+        // AND the new photo has genuinely finished loading into the real
+        // <img> element — never on a fixed guess-timer. That's what
+        // previously let the old photo still be showing (mid-fade, or
+        // not loaded yet) when the new one was swapped in underneath it.
+        Promise.all([whenFadedOut(), whenPhotoReady(photos[0])]).then(function () {
           if (requestId !== readoutRequestId) return;
-          readoutName.textContent = pin.getAttribute("data-name");
+          var name = pin.getAttribute("data-name");
+          readoutName.textContent = name;
           readoutNote.textContent = pin.getAttribute("data-note");
-          if (readoutPhoto && photoSrc) {
-            readoutPhoto.src = photoSrc;
-            readoutPhoto.alt = pin.getAttribute("data-name");
-          }
+          if (readoutPhoto) readoutPhoto.alt = name;
+          rebuildSlides(photos, name);
           readout.classList.remove("is-updating");
           restartSlideshow();
-        }
-
-        if (readoutPhoto && photoSrc) {
-          // Preload the new photo in the background so the fade-in never
-          // reveals a half-loaded image or gets stuck on the old one.
-          var preloader = new Image();
-          var settled = false;
-          function settle() {
-            if (settled) return;
-            settled = true;
-            window.setTimeout(applyUpdate, swapDelay);
-          }
-          preloader.onload = settle;
-          preloader.onerror = settle;
-          preloader.src = photoSrc;
-          if (preloader.complete) settle();
-          window.setTimeout(settle, 1200);
-        } else {
-          window.setTimeout(applyUpdate, swapDelay);
-        }
+        });
       });
     });
+
+    restartSlideshow();
+
+    /* Location detail modal: click the readout's name to open a larger
+       profile for whichever pin is currently selected (San Diego HQ by
+       default, before any pin has been clicked). */
+    var locationModal = document.getElementById("location-modal");
+    if (locationModal && "showModal" in locationModal) {
+      var modalSlideshow = document.getElementById("location-modal-slideshow");
+      var modalPicker = document.getElementById("location-modal-picker");
+      var modalNameEl = document.getElementById("location-modal-name");
+      var modalWorkEl = document.getElementById("location-modal-work");
+      var modalLocDescEl = document.getElementById("location-modal-location-desc");
+      var modalCloseBtn = locationModal.querySelector(".location-modal-close");
+      var modalSlideTimer = null;
+      var modalSlideIndex = 0;
+      var currentPin = document.querySelector('.pin[data-slot="location-san-diego"]');
+
+      pins.forEach(function (pin) {
+        pin.addEventListener("click", function () { currentPin = pin; });
+      });
+
+      function modalShowSlide(i) {
+        var slides = modalSlideshow.querySelectorAll(".location-modal-slide");
+        var thumbs = modalPicker.querySelectorAll(".location-modal-picker-thumb");
+        modalSlideIndex = i;
+        slides.forEach(function (s, idx) { s.classList.toggle("is-active", idx === i); });
+        thumbs.forEach(function (t, idx) { t.classList.toggle("is-active", idx === i); });
+      }
+      function modalRestartTimer() {
+        if (modalSlideTimer) window.clearInterval(modalSlideTimer);
+        var count = modalSlideshow.querySelectorAll(".location-modal-slide").length;
+        if (count > 1 && !prefersReducedMotion) {
+          modalSlideTimer = window.setInterval(function () {
+            modalShowSlide((modalSlideIndex + 1) % count);
+          }, 4000);
+        }
+      }
+
+      readoutName.addEventListener("click", function () {
+        if (!currentPin) return;
+        var name = currentPin.getAttribute("data-name");
+        var photos = pinPhotos(currentPin);
+
+        modalNameEl.textContent = name;
+        modalWorkEl.textContent = currentPin.getAttribute("data-work") || currentPin.getAttribute("data-note") || "";
+        modalLocDescEl.textContent = currentPin.getAttribute("data-location-desc") || "";
+
+        modalSlideshow.replaceChildren();
+        modalPicker.replaceChildren();
+        photos.forEach(function (src, idx) {
+          var slide = document.createElement("div");
+          slide.className = "location-modal-slide";
+          var img = document.createElement("img");
+          img.src = src;
+          img.alt = name;
+          slide.appendChild(img);
+          modalSlideshow.appendChild(slide);
+
+          if (photos.length > 1) {
+            var thumb = document.createElement("button");
+            thumb.type = "button";
+            thumb.className = "location-modal-picker-thumb";
+            thumb.setAttribute("aria-label", "Show photo " + (idx + 1) + " of " + photos.length);
+            var thumbImg = document.createElement("img");
+            thumbImg.src = src;
+            thumbImg.alt = "";
+            thumb.appendChild(thumbImg);
+            thumb.addEventListener("click", function () {
+              modalShowSlide(idx);
+              modalRestartTimer();
+            });
+            modalPicker.appendChild(thumb);
+          }
+        });
+
+        modalShowSlide(0);
+        modalRestartTimer();
+        locationModal.showModal();
+      });
+
+      modalCloseBtn.addEventListener("click", function () { locationModal.close(); });
+      locationModal.addEventListener("click", function (e) {
+        if (e.target === locationModal) locationModal.close();
+      });
+      locationModal.addEventListener("close", function () {
+        if (modalSlideTimer) window.clearInterval(modalSlideTimer);
+      });
+    }
   }
 
   /* Leadership carousel: duplicate cards for a seamless loop, then auto-scroll */
