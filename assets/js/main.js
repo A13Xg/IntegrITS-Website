@@ -119,10 +119,7 @@
         function (entries) {
           entries.forEach(function (entry) {
             if (entry.isIntersecting) {
-              flowChart.classList.add("is-drawn");
-              window.setTimeout(function () {
-                flowChart.classList.add("items-visible");
-              }, 700);
+              flowChart.classList.add("is-drawn", "items-visible");
               flowObserver.unobserve(entry.target);
             }
           });
@@ -141,21 +138,70 @@
     var readoutNote = readout.querySelector(".readout-note");
     var readoutPhoto = document.getElementById("readout-photo");
     var swapDelay = prefersReducedMotion ? 0 : 160;
+    var readoutRequestId = 0;
+
+    /* Location card slideshow: cycles the real photo plus placeholder
+       slides every 3s, crossfading with a small bounce. Restarts from
+       slide 0 whenever the selected location changes. */
+    var readoutSlides = readout.querySelectorAll(".readout-slide");
+    var slideTimer = null;
+    var slideIndex = 0;
+    function showSlide(i) {
+      slideIndex = i;
+      readoutSlides.forEach(function (s, idx) {
+        s.classList.toggle("is-active", idx === i);
+      });
+    }
+    function restartSlideshow() {
+      if (slideTimer) window.clearInterval(slideTimer);
+      showSlide(0);
+      if (readoutSlides.length > 1 && !prefersReducedMotion) {
+        slideTimer = window.setInterval(function () {
+          showSlide((slideIndex + 1) % readoutSlides.length);
+        }, 3000);
+      }
+    }
+    restartSlideshow();
 
     pins.forEach(function (pin) {
       pin.addEventListener("click", function () {
         pins.forEach(function (p) { p.classList.remove("is-active"); });
         pin.classList.add("is-active");
         readout.classList.add("is-updating");
-        window.setTimeout(function () {
+
+        var requestId = ++readoutRequestId;
+        var photoSrc = pin.getAttribute("data-photo");
+
+        function applyUpdate() {
+          if (requestId !== readoutRequestId) return;
           readoutName.textContent = pin.getAttribute("data-name");
           readoutNote.textContent = pin.getAttribute("data-note");
-          if (readoutPhoto) {
-            readoutPhoto.src = pin.getAttribute("data-photo");
+          if (readoutPhoto && photoSrc) {
+            readoutPhoto.src = photoSrc;
             readoutPhoto.alt = pin.getAttribute("data-name");
           }
           readout.classList.remove("is-updating");
-        }, swapDelay);
+          restartSlideshow();
+        }
+
+        if (readoutPhoto && photoSrc) {
+          // Preload the new photo in the background so the fade-in never
+          // reveals a half-loaded image or gets stuck on the old one.
+          var preloader = new Image();
+          var settled = false;
+          function settle() {
+            if (settled) return;
+            settled = true;
+            window.setTimeout(applyUpdate, swapDelay);
+          }
+          preloader.onload = settle;
+          preloader.onerror = settle;
+          preloader.src = photoSrc;
+          if (preloader.complete) settle();
+          window.setTimeout(settle, 1200);
+        } else {
+          window.setTimeout(applyUpdate, swapDelay);
+        }
       });
     });
   }

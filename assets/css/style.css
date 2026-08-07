@@ -108,7 +108,7 @@ h1 {
   font-weight: 800;
   letter-spacing: -0.01em;
   font-size: clamp(2.4rem, 5.4vw, 4.4rem);
-  line-height: 1.04;
+  line-height: 1.12;
 }
 h2 {
   font-family: var(--font-display);
@@ -126,11 +126,11 @@ h3 {
 }
 .eyebrow {
   font-family: var(--font-mono);
-  font-size: 0.78rem;
+  font-size: 1rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--red-bright);
-  margin: 0 0 1.1em;
+  margin: 0 0 1.3em;
 }
 .ref-tag {
   font-family: var(--font-stencil);
@@ -328,12 +328,12 @@ h3 {
   padding-bottom: 28px;
 }
 .hero-lede {
-  margin-top: 1em;
+  margin-top: 1.3em;
   font-size: clamp(1rem, 1.6vw, 1.2rem);
   color: var(--slate);
   max-width: 46ch;
 }
-.hero-actions { display: flex; gap: 1rem; margin-top: 1.6em; flex-wrap: wrap; }
+.hero-actions { display: flex; gap: 1rem; margin-top: 2.1em; flex-wrap: wrap; }
 
 .hero-media { align-self: stretch; }
 
@@ -364,6 +364,16 @@ h3 {
   color: var(--red);
 }
 .stat dd span::after { content: attr(data-suffix); }
+.stat-est {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-style: italic;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--slate);
+  margin-right: 0.4em;
+  vertical-align: middle;
+}
 
 @media (max-width: 880px) {
   .hero-grid { grid-template-columns: 1fr; gap: 2.5rem; }
@@ -447,9 +457,13 @@ h3 {
   stroke: var(--blue);
   stroke-width: 1.5;
   vector-effect: non-scaling-stroke;
-  stroke-dasharray: 100;
-  stroke-dashoffset: 100;
-  transition: stroke-dashoffset 900ms var(--ease);
+  /* non-scaling-stroke makes dasharray/dashoffset resolve in screen
+     pixels rather than the viewBox's user units, so this needs to be a
+     single dash comfortably longer than the line can ever render (the
+     .container max-width caps it well under 1150px), not "100". */
+  stroke-dasharray: 1300px;
+  stroke-dashoffset: 1300px;
+  transition: stroke-dashoffset 1200ms var(--ease);
 }
 .flow-chart.is-drawn .flow-line line { stroke-dashoffset: 0; }
 
@@ -606,6 +620,32 @@ h3 {
 }
 
 .readout-media { margin-bottom: 1em; }
+.readout-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: scale(0.94);
+  transition: opacity 450ms var(--ease), transform 450ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.readout-slide.is-active {
+  opacity: 1;
+  transform: scale(1);
+  z-index: 1;
+}
+.readout-slide img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.readout-slide-placeholder {
+  background-image: repeating-linear-gradient(
+    135deg,
+    var(--placeholder-orange) 0 16px,
+    var(--placeholder-orange-dim) 16px 32px
+  );
+}
 .readout-name {
   font-family: var(--font-display);
   font-weight: 700;
@@ -622,7 +662,6 @@ h3 {
 /* =========================================================
    Veteran block
    ========================================================= */
-.veteran { background: var(--charcoal); }
 .veteran-grid {
   display: grid;
   grid-template-columns: 0.95fr 1fr;
@@ -819,18 +858,22 @@ h3 {
 .careers-grid .btn { margin-top: 1.4rem; }
 .careers-aside { display: flex; flex-direction: column; gap: 1.2rem; }
 .benefit-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  border-top: 1px solid var(--steel);
+  border-left: 1px solid var(--steel);
   align-self: start;
 }
 .benefit-list li {
   font-family: var(--font-mono);
   font-size: 0.85rem;
-  padding: 0.9em 0;
-  border-top: 1px solid var(--steel);
+  padding: 0.9em 1em;
+  border-right: 1px solid var(--steel);
+  border-bottom: 1px solid var(--steel);
 }
-.benefit-list li:last-child { border-bottom: 1px solid var(--steel); }
+@media (max-width: 420px) {
+  .benefit-list { grid-template-columns: 1fr; }
+}
 @media (max-width: 780px) {
   .careers-grid { grid-template-columns: 1fr; }
 }
@@ -860,8 +903,8 @@ h3 {
 }
 .dataplate-title {
   font-family: var(--font-stencil);
-  font-size: 0.82rem;
-  letter-spacing: 0.06em;
+  font-size: 1.2rem;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--red-bright);
   margin-bottom: 1em;
